@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script>
+        var myNamespace = (function () {
+
+            var myPrivateVar, myPrivateMethod;
+
+            // A private counter variable
+            myPrivateVar = 0;
+
+            // A private function which logs any arguments
+            myPrivateMethod = function( foo ) {
+                console.log( foo );
+            };
+
+            return {
+
+                // A public variable
+                myPublicVar: "foo",
+
+                // A public function utilizing privates
+                myPublicFunction: function( bar ) {
+
+                    // Increment our private counter
+                    myPrivateVar = ++myPrivateVar;
+                    console.log(myPrivateVar);
+                    // Call our private method using bar
+                    myPrivateMethod( bar );
+
+                }
+            };
+
+        })();
+        myNamespace.myPublicFunction("12345666666");
+        console.log(myNamespace.myPublicVar);
+
+        // Global module
+        var myModule = (function ( jQ, _ ) {
+            function privateMethod1(){
+                jQ(".container").html("<span>test</span>");
+            }
+
+            function privateMethod2(){
+                console.log( _.max([10, 5, 100, 2, 1000]) );
+            }
+
+            return{
+                publicMethod: function(){
+                    privateMethod1();
+                    privateMethod2();
+                }
+            };
+
+// Pull in jQuery and Underscore
+        }( jQuery, _ ));
+   /*     window.onload=function () {
+            myModule.publicMethod();
+        };*/
+
+        // Global module
+        var myModule1 = (function () {
+
+            // Module object
+            var module = {},
+                privateVariable = "Hello World";
+
+            function privateMethod() {
+                // ...
+            }
+
+            module.publicProperty = "Foobar";
+            module.publicMethod = function () {
+                console.log( privateVariable );
+            };
+
+            return module;
+
+        }());
+        console.log(myModule1.publicProperty);
+    </script>
+</head>
+<body>
+  <div class="container">111</div>
+<script>
+    $.ready=function () {
+        myModule.publicMethod();
+    };
+</script>
+</body>
+</html>

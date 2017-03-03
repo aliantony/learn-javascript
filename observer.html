@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 最简单Demo
+        // 解决: 实现了最简单的发布订阅
+        // 不足: 发布者将订阅者没有订阅的事件也发给了订阅者
+        (function () {
+
+            var demo = {};
+
+            demo.clientList = [];
+
+            demo.listen = function (fn) {
+
+                this.clientList.push(fn);
+            };
+
+            demo.trigger = function () {
+
+                for (var i = 0, fn; fn = this.clientList[ i++ ];) {
+                    fn.apply(this, arguments);
+                }
+            };
+
+            demo.listen(function (v1, v2) {
+                console.log(this);//this的指向被apply改为demo了
+                console.log("v1: " + v1);
+                console.log("v2: " + v2);
+            });
+
+            demo.listen(function (v1, v2) {
+
+                console.log("v1: " + v1);
+                console.log("v2: " + v2);
+            });
+
+            demo.trigger("v1", "v2");
+
+        }());
+    </script>
+</head>
+<body>
+
+</body>
+</html>

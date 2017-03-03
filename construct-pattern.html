@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*构造器模式,继承的应用*/
+        //var newObject = {};
+        // or
+        //var newObject = Object.create( null );
+        // or
+        var newObject = new Object();
+
+        // ECMAScript 3 兼容形式
+
+        // 1. “点号”法
+
+        // 设置属性
+        newObject.someKey = "Hello World";
+
+        // 获取属性
+        var key = newObject.someKey;
+
+        // 2. “方括号”法
+
+        // 设置属性
+        newObject["someKey"] = "Hello World";
+
+        // 获取属性
+        //var key = newObject["someKey"];
+
+        // ECMAScript 5 仅兼容性形式
+        // For more information see: http://kangax.github.com/es5-compat-table/
+
+        // 3. Object.defineProperty方式
+
+        // 设置属性
+        Object.defineProperty( newObject, "someKey", {
+            value: "for more control of the property's behavior",
+            writable: true,
+            enumerable: true,
+            configurable: true
+        });
+
+        // 如果上面的方式你感到难以阅读，可以简短的写成下面这样：
+
+        var defineProp = function ( obj, key, value ){
+            var config = {};
+            config.value = value;
+            Object.defineProperty( obj, key, config );
+        };
+
+        // 为了使用它，我们要创建一个“person”对象
+        var person = Object.create( null );
+
+        // 用属性构造对象
+        defineProp( person, "car",  "Delorean" );
+        defineProp( person, "dateOfBirth", "1981" );
+        defineProp( person, "hasBeard", false );
+
+        // 4. Object.defineProperties方式
+
+        // 设置属性
+        Object.defineProperties( newObject, {
+
+            "someKey": {
+                value: "Hello World",
+                writable: true
+            },
+
+            "anotherKey": {
+                value: "Foo bar",
+                writable: false
+            }
+
+        });
+
+        // 3和4中的读取属行可用1和2中的任意一种
+
+        // 使用:
+
+        // 创建一个继承与Person的赛车司机
+        var driver = Object.create( person );
+
+        // 设置司机的属性
+        defineProp(driver, "topSpeed", "100mph");
+
+        // 获取继承的属性 (1981)
+        console.log( driver.dateOfBirth );
+
+        // 获取我们设置的属性 (100mph)
+        console.log( driver.topSpeed );
+
+
+        function Car( model, year, miles ) {
+
+            this.model = model;
+            this.year = year;
+            this.miles = miles;
+
+            /*this.toString = function () {
+                return this.model + " has done " + this.miles + " miles";
+            };*/
+        }
+
+        Car.prototype.toString = function () {
+            return this.model + " has done " + this.miles + " miles";
+        };
+
+        // 使用:
+
+        // 我们可以示例化一个Car
+        var civic = new Car( "Honda Civic", 2009, 20000 );
+        var mondeo = new Car( "Ford Mondeo", 2010, 5000 );
+
+        Object.defineProperty( civic, "H", {
+            value: "for more control of the property's behavior11111"
+        });
+        // 打开浏览器控制台查看这些对象toString()方法的输出值
+        // output of the toString() method being called on
+        // these objects
+        console.log( civic.toString() );
+        console.log(civic["H"]);
+        console.log( mondeo.toString() );
+    </script>
+</head>
+<body>
+
+</body>
+</html>
