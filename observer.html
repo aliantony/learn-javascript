@@ -7,7 +7,7 @@
         // 最简单Demo
         // 解决: 实现了最简单的发布订阅
         // 不足: 发布者将订阅者没有订阅的事件也发给了订阅者
-        (function () {
+       /* (function () {
 
             var demo = {};
 
@@ -39,7 +39,55 @@
 
             demo.trigger("v1", "v2");
 
-        }());
+        }());*/
+
+        // 简单Demo
+        // 解决: 增加一个标志 让订阅者只订阅自己感兴趣的事件
+        // 不足: 当订阅者在每个发布者处订阅事件时 每一个发布者对象都要重复编写部分重复代码
+       /* (function () {
+
+            var demo = {};
+
+            demo.clientList = {};
+
+            demo.listen = function (key, fn) {
+
+                if (!this.clientList[ key ]) {
+
+                    this.clientList[ key ] = [];
+                }
+                this.clientList[ key ].push(fn);
+            };
+
+            demo.trigger = function () {
+                //因为arguments不是真正的数组
+                var key = [].shift.apply(arguments),//这里用apply改变了shift方法中的this指针，这样让argument也支持了shift
+                    fns = this.clientList[ key ];
+
+                if (!fns || fns.length === 0) { // 如果没有订阅者订阅事件 则返回
+                    return false;
+                }
+                for (var i = 0, fn; fn = fns[ i++ ];) {
+                    fn.apply(this, arguments);
+                }
+            };
+
+            demo.listen("demo1", function (v1) {
+
+                console.log("v1: " + v1);
+            });
+
+            demo.listen("demo2", function (v1, v2) {
+
+                console.log("v2: " + v1);
+                console.log("v2: " + v2);
+            });
+
+
+           // demo.trigger("demo1", "demo1Value");
+            demo.trigger("demo2", "demo2Value1", "demo2Value2");
+
+        }());*/
     </script>
 </head>
 <body>

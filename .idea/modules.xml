@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D://learn-javascript/learn-javascript.iml" filepath="D://learn-javascript/learn-javascript.iml" />
+      <module fileurl="file://$PROJECT_DIR$/learn-javascript.iml" filepath="$PROJECT_DIR$/learn-javascript.iml" />
     </modules>
   </component>
 </project>
