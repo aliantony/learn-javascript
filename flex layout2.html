@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .flex-container{
+            display:flex;
+            flex-direction: row;
+            width:600px;
+            height:230px;
+            background-color: #ccc;
+            justify-content: space-around;
+            align-items:stretch; //侧轴方向上的对齐方式没有设置尺寸时拉伸
+        }
+        .flex-item{
+            background-color:blue;
+            width: 100px;
+            margin: 5px;;
+        }
+        .a{
+            margin-top: 10px;
+            /*height: 100px;*/
+        }
+        .b{
+            margin-top: 20px;
+            /*height: 150px;*/
+        }
+        .c{
+            margin-top: 30px;
+            /*height: 80px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="flex-container">
+    <div class="flex-item a">A</div>
+    <div class="flex-item b">B</div>
+    <div class="flex-item c">A</div>
+    <div class="flex-item a">B</div>
+</div>
+</body>
+</html>

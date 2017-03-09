@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .flex-container{
+            display:flex;
+            flex-direction: row;
+            width:600px;
+            height:230px;
+            background-color: #ccc;
+            justify-content: space-around;
+            align-content:baseline; /*换行后各个伸缩行的对齐方式*/
+            flex-wrap: wrap;
+        }
+        .flex-item{
+            background-color:blue;
+            width: 100px;
+            height: 70px;
+            margin: 5px;;
+        }
+        .order1{
+            order:1;
+        }
+        .order2{
+            order:2;
+        }
+    </style>
+</head>
+<body>
+<div class="flex-container">
+    <div class="flex-item order1">1</div>
+    <div class="flex-item order2">2</div>
+    <div class="flex-item ">A</div>
+    <div class="flex-item ">B</div>
+    <div class="flex-item ">A</div>
+    <div class="flex-item ">B</div>
+    <div class="flex-item ">A</div>
+    <div class="flex-item ">B</div>
+</div>
+</body>
+</html>
